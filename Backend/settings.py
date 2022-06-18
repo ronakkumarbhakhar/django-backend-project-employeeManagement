@@ -93,13 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'new' :{
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR / 'db',
-        'PASSWORD':'ronak@2002',
-        'HOST': 'localhost',
-        'port' : '3306'
-    }
+    
 }
 
 
