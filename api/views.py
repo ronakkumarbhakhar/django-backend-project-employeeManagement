@@ -15,8 +15,8 @@ from rest_framework import status
 class CustomAuthToken(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,
-                                           context={'request': request})
+        serializer = self.serializer_class(data=request.data,context={'request': request})
+        print(request.data)                                   
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data['username']
             user = User.objects.get(username=username)
@@ -24,6 +24,7 @@ class CustomAuthToken(ObtainAuthToken):
             data={}
             data['token']=token[0].key
             data['user_id']=user.id
+            print(data)
             return Response(data)
 
 # ----------------------------------------------------------------------------
