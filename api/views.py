@@ -36,10 +36,9 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
         return Employee.objects.filter(employer_id = self.kwargs['employer_id'])
 
 class EmployeeDetailview(generics.RetrieveAPIView):
+    queryset = Employee.objects.all()
     permission_classes =[IsAuthenticated]
     serializer_class = EmployeeSerializer
-    def get_queryset(self):
-        return Employee.objects.get(id=self.kwargs['employee_id'])
 
 class AttendanceListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
