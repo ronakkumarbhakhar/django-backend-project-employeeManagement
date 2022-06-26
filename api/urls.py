@@ -9,4 +9,5 @@ urlpatterns = [
     path('api-auth/login/',CustomAuthToken.as_view(),name='login'),
     path('api-auth/registration/',user_registration_view,name='register'),
     path('api-auth/logout/<int:employer_id>/',user_logout_view,name='logout'),
+    path('api-auth/employeedetail/<int:employee_id>/',user_logout_view,name='employee detail'),
     ]

@@ -35,6 +35,12 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Employee.objects.filter(employer_id = self.kwargs['employer_id'])
 
+class EmployeeDetailview(generics.RetrieveAPIView):
+    permission_classes =[IsAuthenticated]
+    serializer_class = EmployeeSerializer
+    def get_queryset(self):
+        return Employee.objects.get(id=self.kwargs['employee_id'])
+
 class AttendanceListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     # queryset = Attendance.objects.all()
@@ -59,7 +65,7 @@ def user_registration_view(request):
             user = User.objects.get(username=serialize.validated_data['username'])
             token = Token.objects.create(user=user)
             data['token']=token.key
-            data['username']=serialize.validated_data['username']
+            data['user_id']=user.id
             return Response(data,status=status.HTTP_201_CREATED)
         else:
             return Response({'error':'data entered is not valid'})
